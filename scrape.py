@@ -1,14 +1,13 @@
+import csv
+import sqlite3
+import time
+
 from bs4 import BeautifulSoup
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.expected_conditions import (presence_of_element_located)
 from selenium.webdriver.support.wait import WebDriverWait
 from urllib.request import pathname2url
-import csv
-import time
-import sqlite3
-import plotly.express as px
-import pandas 
 
 connection = sqlite3.connect('Colourpop.db')
 
@@ -21,7 +20,6 @@ name VARCHAR(20),
 price INTEGER,
 sale_price INTEGER)'''
 
-#connection.execute(sql_drop)
 connection.execute(sql_create)                                               
 
 urlpage = 'https://colourpop.com/collections/best-sellers'
@@ -115,14 +113,5 @@ rows = cursor.fetchall()
 for row in rows:
     print(row)
 
-iris = px.data.iris()
-fig = px.scatter(iris, x='sepal_width', y='sepal_length')
-fig.show()
-
 connection.close()
 driver.quit()
-
-#todo detect changes in price?
-#which website has the most sales
-
-
